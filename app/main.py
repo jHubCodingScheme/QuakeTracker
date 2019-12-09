@@ -33,3 +33,12 @@ def index():
         quake["alerts"]["distance"] = {place: distance < 200 for place, distance in quake["distances"].items()}
         quake["alerts"]["total"] = quake["alerts"]["mag"] and any(quake["alerts"]["distance"].values())
     return render_template("index.html", generated=datetime.utcnow().strftime("%d/%m/%y %H%MZ"), quakes=quakes, locations=locations.keys())
+
+@app.route("/quake/<qid>")
+def quake(qid):
+    info = requests.get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/%s.geojson" % qid).json()
+
+    info["properties"]["time"] = datetime.utcfromtimestamp(info["properties"]["time"]/1000).strftime("%d/%m/%y %H%MZ")
+    info["geometry"]["coordinates"] = info["geometry"]["coordinates"][:-1][::-1]
+
+    return render_template("quake.html", generated=datetime.utcnow().strftime("%d/%m/%y %H%MZ"), quake=info)

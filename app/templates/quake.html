@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="refresh" content="60">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet"
+                    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                    crossorigin="anonymous">
+
+        <title>EJSU QuakeReps</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>{{ quake["properties"]["title"] }}</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    This report generated {{ generated }} (now)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                  <table class="table">
+                    <tr><td>Date/Time</td><td>{{quake["properties"]["time"]}}</td></tr>
+                    <tr><td>Magnitude</td><td>{{quake["properties"]["mag"]}}</td></tr>
+                    <tr><td>Location</td><td>{{quake["properties"]["place"]}}</td></tr>
+                    <tr><td>Coords</td><td>{{quake["geometry"]["coordinates"]}}</td></tr>
+                    <tr><td>Alert</td><td>{{quake["properties"]["alert"]}}</td></tr>
+                    {% if quake["properties"]["products"]["losspager"] is defined %}
+                    <tr><td>PAGER Link</td><td><a href='{{ quake["properties"]["products"]["losspager"][0]["contents"]["onepager.pdf"]["url"] }}'>Available here</a></td></tr>
+                    {% endif %}
+                  </table>
+                </div>
+                <div class="col-6">
+                  {% if quake["properties"]["products"]["losspager"] is defined %}
+                  <div class="row">
+                    <h4>Predicted Fatalities</h4>
+                    <img src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertfatal_small.png"]["url"] }}'/>
+                  </div>
+                  <div class="row">
+                    <h4>Predicted Economic Loss</h4>
+                    <img src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertecon_small.png"]["url"] }}'/>
+                  </div>
+                  {% else %}
+                  Pager information not available
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+    </body>
+</html>

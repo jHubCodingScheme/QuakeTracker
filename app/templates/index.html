@@ -47,7 +47,7 @@
                         <tbody>
                         {% for quake in quakes %}
                             <tr {{ 'class="table-danger"'|safe if quake["alerts"]["total"] else "" }} >
-                                <td>{{ quake["id"] }}</td>
+                                <td><a href='/quake/{{quake["id"]}}'>{{ quake["id"] }}</a></td>
                                 <td>{{ quake["properties"]["time"] }}</td>
                                 <!-- <td>{{ quake["geometry"]["coordinates"] }}</td> -->
                                 <td {{ 'class="table-danger"'|safe if quake["alerts"]["mag"] }}>{{ quake["properties"]["mag"] }}</td>
