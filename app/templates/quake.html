@@ -30,23 +30,27 @@
 
             <div class="row">
                 <div class="col-md-6">
-                  <table class="table">
-                    <tr><td>Date/Time</td><td>{{quake["properties"]["time"]}}</td></tr>
-                    <tr><td>Magnitude</td><td>{{quake["properties"]["mag"]}}</td></tr>
-                    <tr><td>Location</td><td>{{quake["properties"]["place"]}}</td></tr>
-                    <tr><td>Coords</td><td>{{quake["geometry"]["coordinates"]}}</td></tr>
-                    <tr><td>Alert</td><td>{{quake["properties"]["alert"]}}</td></tr>
-                    {% if quake["properties"]["products"]["losspager"] is defined %}
-                    <tr><td>PAGER Link</td><td><a href='{{ quake["properties"]["products"]["losspager"][0]["contents"]["onepager.pdf"]["url"] }}'>Available here</a></td></tr>
-                    {% endif %}
-                  </table>
-                </div>
-                <div class="col-md-6">
+                  <div class="row">
+                    <table class="table">
+                      <tr><td>Date/Time</td><td>{{quake["properties"]["time"]}}</td></tr>
+                      <tr><td>Magnitude</td><td>{{quake["properties"]["mag"]}}</td></tr>
+                      <tr><td>Location</td><td>{{quake["properties"]["place"]}}</td></tr>
+                      <tr><td>Coords</td><td>{{quake["geometry"]["coordinates"]}}</td></tr>
+                      <tr><td>Alert</td><td>{{quake["properties"]["alert"]}}</td></tr>
+                      {% if quake["properties"]["products"]["losspager"] is defined %}
+                      <tr><td>PAGER Link</td><td><a href='{{ quake["properties"]["products"]["losspager"][0]["contents"]["onepager.pdf"]["url"] }}'>Available here</a></td></tr>
+                      {% endif %}
+                    </table>
+                  </div>
                   {% if quake["properties"]["products"]["losspager"] is defined %}
                   <div class="row">
                     <h4>Exposure</h4>
                     <img class='img-fluid' src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["exposure.png"]["url"] }}'/>
                   </div>
+                  {% endif %}
+                </div>
+                <div class="col-md-6">
+                  {% if quake["properties"]["products"]["losspager"] is defined %}
                   <div class="row">
                     <h4>Predicted Fatalities</h4>
                     <img class='img-fluid' src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertfatal_small.png"]["url"] }}'/>
