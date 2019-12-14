@@ -45,15 +45,15 @@
                   {% if quake["properties"]["products"]["losspager"] is defined %}
                   <div class="row">
                     <h4>Exposure</h4>
-                    <img src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["exposure.png"]["url"] }}'/>
+                    <img class='img-fluid' src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["exposure.png"]["url"] }}'/>
                   </div>
                   <div class="row">
                     <h4>Predicted Fatalities</h4>
-                    <img src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertfatal_small.png"]["url"] }}'/>
+                    <img class='img-fluid' src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertfatal_small.png"]["url"] }}'/>
                   </div>
                   <div class="row">
                     <h4>Predicted Economic Loss</h4>
-                    <img src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertecon_small.png"]["url"] }}'/>
+                    <img class='img-fluid' src='{{ quake["properties"]["products"]["losspager"][0]["contents"]["alertecon_small.png"]["url"] }}'/>
                   </div>
                   {% else %}
                   Pager information not available
